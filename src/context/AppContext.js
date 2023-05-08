@@ -2,10 +2,10 @@
 Then you will set the initial state for the Shopping Cart.
 You will be creating the Provider component which wraps the components you want to give access to the state.*/
 
-// 5. The reducer - this is used to update the state, based on the action
 
 import React, { createContext, useReducer } from 'react';
 
+// 5. The reducer - this is used to update the state, based on the action
 export const AppReducer = (state, action) => {
     let new_expenses = [];
     switch (action.type) {
@@ -24,6 +24,7 @@ export const AppReducer = (state, action) => {
             return {
                 ...state,
             };
+
             case 'RED_QUANTITY':
                 state.expenses.map((expense)=>{
                     if(expense.name === action.payload.name) {
@@ -57,10 +58,12 @@ export const AppReducer = (state, action) => {
             return {
                 ...state
             }
+
         default:
             return state;
     }
 };
+
 // 1. Sets the initial state when the app loads
 const initialState = {
     expenses: [
@@ -72,17 +75,21 @@ const initialState = {
     ],
     Location: '£'
 };
+
 // 2. Creates the context this is the thing our components import and use to get the state
 export const AppContext = createContext();
+
 // 3. Provider component - wraps the components we want to give access to the state
 // Accepts the children, which are the nested(wrapped) components
 export const AppProvider = (props) => {
     // 4. Sets up the app state. takes a reducer, and an initial state
     const [state, dispatch] = useReducer(AppReducer, initialState);
+
     const totalExpenses = state.expenses.reduce((total, item) => {
         return (total = total + (item.unitprice*item.quantity));
     }, 0);
 state.CartValue = totalExpenses;
+
     return (
         <AppContext.Provider
             value={{
