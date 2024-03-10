@@ -1,4 +1,5 @@
 # Getting Started with Create React App
+# From 'Building Front-end Apps with React' Cousera Course'
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
